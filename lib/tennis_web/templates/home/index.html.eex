@@ -1,0 +1,30 @@
+<h1>Listing Homes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Text</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for home <- @homes do %>
+    <tr>
+      <td><%= home.name %></td>
+      <td><%= home.email %></td>
+      <td><%= home.text %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.home_path(@conn, :show, home) %></span>
+        <span><%= link "Edit", to: Routes.home_path(@conn, :edit, home) %></span>
+        <span><%= link "Delete", to: Routes.home_path(@conn, :delete, home), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Home", to: Routes.home_path(@conn, :new) %></span>

@@ -1,0 +1,23 @@
+<h1>Show Home</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @home.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @home.email %>
+  </li>
+
+  <li>
+    <strong>Text:</strong>
+    <%= @home.text %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.home_path(@conn, :edit, @home) %></span>
+<span><%= link "Back", to: Routes.home_path(@conn, :index) %></span>
