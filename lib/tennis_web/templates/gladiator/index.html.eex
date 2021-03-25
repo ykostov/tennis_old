@@ -1,0 +1,30 @@
+<h1>Listing Gladiators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for gladiator <- @gladiators do %>
+    <tr>
+      <td><%= gladiator.title %></td>
+      <td><%= gladiator.description %></td>
+      <td><%= gladiator.start_date %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.gladiator_path(@conn, :show, gladiator) %></span>
+        <span><%= link "Edit", to: Routes.gladiator_path(@conn, :edit, gladiator) %></span>
+        <span><%= link "Delete", to: Routes.gladiator_path(@conn, :delete, gladiator), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Gladiator", to: Routes.gladiator_path(@conn, :new) %></span>
