@@ -1,8 +1,8 @@
 defmodule TennisWeb.HomeController do
   use TennisWeb, :controller
 
-  def index do
-
+  def index(conn, _params) do
+    render(conn, "index.html")
   end
 
 end
