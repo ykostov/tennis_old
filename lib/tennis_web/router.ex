@@ -20,7 +20,7 @@ defmodule TennisWeb.Router do
   scope "/", TennisWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", HomeController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -75,5 +75,6 @@ defmodule TennisWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
     resources "/gladiators", GladiatorController
+
   end
 end
