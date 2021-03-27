@@ -19,7 +19,7 @@ defmodule TennisWeb.GladiatorController do
       {:ok, gladiator} ->
         conn
         |> put_flash(:info, "Gladiator created successfully.")
-        |> redirect(to: Routes.gladiator_path(conn, :show, gladiator))
+        |> redirect(to:  Routes.gladiator_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
