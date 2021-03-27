@@ -1,27 +1,101 @@
-<h1>Log in</h1>
-
-<%= form_for @conn, Routes.admin_session_path(@conn, :create), [as: :admin], fn f -> %>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+<main class="profile-page">
+  <section class="relative block" style="height: 500px;">
+    <div
+      class="absolute top-0 w-full h-full bg-center bg-cover"
+      style='background-image: url("https://www.tabletennisdaily.com/forum/images/malongbollchinaopend.jpg");'
+    >
+      <span
+        id="blackOverlay"
+        class="w-full h-full absolute opacity-50 bg-black"
+      ></span>
     </div>
-  <% end %>
+    <div
+      class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+      style="height: 70px; transform: translateZ(0px);"
+    >
+      <svg
+        class="absolute bottom-0 overflow-hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        version="1.1"
+        viewBox="0 0 2560 100"
+        x="0"
+        y="0"
+      >
+        <polygon
+          class="text-gray-300 fill-current"
+          points="2560 0 2560 100 0 100"
+        ></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="relative py-16 bg-gray-300">
+    <div class="container mx-auto px-4">
+      <div
+        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"
+      >
+        <div class="px-6">
+          <div class="flex flex-wrap justify-center">
+            <div
+              class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"
+            >
+              <div class="relative">
+                <img
+                  alt="..."
+                  src="./assets/img/team-2-800x800.jpg"
+                  class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                  style="max-width: 150px;"
+                />
+              </div>
+            </div>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
 
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
+          </div>
+          <div class="text-center mt-12">
+            <h3
+              class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
+            >
+              Admin Sign In
+            </h3>
 
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
 
-  <div>
-    <%= submit "Log in" %>
-  </div>
-<% end %>
+          <div class="mt-10 py-10 border-t border-gray-300 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full max-w-xs">
 
-<p>
-  <%= link "Register", to: Routes.admin_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.admin_reset_password_path(@conn, :new) %>
-</p>
+
+              <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <%= form_for @conn, Routes.admin_session_path(@conn, :create), [as: :admin], fn f -> %>
+                 <%= if @error_message do %>
+                   <div class="alert alert-danger">
+                     <p><%= @error_message %></p>
+                 </div>
+                 <% end %>
+
+                 <div class="mb-4">
+                 <%= label f, :email %>
+                 <%= email_input f, :email, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+               </div>
+                <div class="mb-4">
+                 <%= label f, :password %>
+                 <%= password_input f, :password, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+               </div>
+                 <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+                 <%= checkbox f, :remember_me %>
+
+                 <div><br>
+                   <%= submit "Log in", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+                 </div>
+               <% end %>
+             </form>
+             </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
