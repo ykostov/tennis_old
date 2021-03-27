@@ -1,6 +1,8 @@
 defmodule TennisWeb.Router do
   use TennisWeb, :router
 
+  import TennisWeb.AdminAuth
+
   import TennisWeb.UserAuth
 
   pipeline :browser do
@@ -10,6 +12,7 @@ defmodule TennisWeb.Router do
     plug :put_root_layout, {TennisWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_admin
     plug :fetch_current_user
   end
 
@@ -76,5 +79,37 @@ defmodule TennisWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :confirm
     resources "/gladiators", GladiatorController
 
+  end
+
+  ## Authentication routes
+
+  scope "/", TennisWeb do
+    pipe_through [:browser, :redirect_if_admin_is_authenticated]
+
+    get "/admins/register", AdminRegistrationController, :new
+    post "/admins/register", AdminRegistrationController, :create
+    get "/admins/log_in", AdminSessionController, :new
+    post "/admins/log_in", AdminSessionController, :create
+    get "/admins/reset_password", AdminResetPasswordController, :new
+    post "/admins/reset_password", AdminResetPasswordController, :create
+    get "/admins/reset_password/:token", AdminResetPasswordController, :edit
+    put "/admins/reset_password/:token", AdminResetPasswordController, :update
+  end
+
+  scope "/", TennisWeb do
+    pipe_through [:browser, :require_authenticated_admin]
+
+    get "/admins/settings", AdminSettingsController, :edit
+    put "/admins/settings", AdminSettingsController, :update
+    get "/admins/settings/confirm_email/:token", AdminSettingsController, :confirm_email
+  end
+
+  scope "/", TennisWeb do
+    pipe_through [:browser]
+
+    delete "/admins/log_out", AdminSessionController, :delete
+    get "/admins/confirm", AdminConfirmationController, :new
+    post "/admins/confirm", AdminConfirmationController, :create
+    get "/admins/confirm/:token", AdminConfirmationController, :confirm
   end
 end

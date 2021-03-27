@@ -24,4 +24,25 @@ defmodule Tennis.AccountsFixtures do
     [_, token, _] = String.split(captured.body, "[TOKEN]")
     token
   end
+
+  def unique_admin_email, do: "admin#{System.unique_integer()}@example.com"
+  def valid_admin_password, do: "hello world!"
+
+  def admin_fixture(attrs \\ %{}) do
+    {:ok, admin} =
+      attrs
+      |> Enum.into(%{
+        email: unique_admin_email(),
+        password: valid_admin_password()
+      })
+      |> Tennis.Accounts.register_admin()
+
+    admin
+  end
+
+  def extract_admin_token(fun) do
+    {:ok, captured} = fun.(&"[TOKEN]#{&1}[TOKEN]")
+    [_, token, _] = String.split(captured.body, "[TOKEN]")
+    token
+  end
 end
