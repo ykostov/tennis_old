@@ -78,6 +78,7 @@ defmodule TennisWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
     resources "/gladiators", GladiatorController
+    resources "/players", PlayerController
 
   end
 
