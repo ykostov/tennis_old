@@ -3,7 +3,6 @@ defmodule TennisWeb.GladiatorLive do
 
   alias TennisWeb.GladiatorsView
   alias TennisWeb.PlayersView
-  alias TennisWeb.Home
   alias TennisWeb.Accounts
 
   def render(assigns) do
