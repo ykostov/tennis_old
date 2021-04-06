@@ -1,7 +1,7 @@
 defmodule TennisWeb.GladiatorLive do
   use TennisWeb, :live_view
 
-  alias TennisWeb.GladiatorsView
+  
   alias TennisWeb.PlayersView
   alias TennisWeb.Accounts
 
