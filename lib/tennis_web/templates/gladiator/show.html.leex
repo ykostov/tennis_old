@@ -130,15 +130,15 @@
                     <%= @gladiator.start_date %>
                   </li>
 
-                  <%# if @current_admin do %>
-                  <%# for player <- @players do %>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        <%# player.name %>
-                      </label>
-                    </div>
-                  <%# end %>
+                  <%= if @current_admin do %>
+                    <%= for player <- @players do %>
+                      <li>
+                        <strong><%= @player.name %></strong>
+
+                      </li>
+
+                      <%= end %>
+                  <%= end %>
 
                 </ul>
 
