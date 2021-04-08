@@ -1,10 +1,13 @@
 defmodule TennisWeb.GladiatorLive do
   use TennisWeb, :live_view
 
+  alias TennisWeb.GladiatorView
   alias Tennis.Players
+  alias Tennis.Accounts
+
 
   def render(assigns) do
-   render GladiatorsView, "show.html", assigns
+   render GladiatorView, "show.html", assigns
   end
 
   @impl true
