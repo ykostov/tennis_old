@@ -263,7 +263,10 @@
                 target="_blank"
                 class="text-gray-600 hover:text-gray-900"
                 >Bratac.net</a
-              >
+              ><br>
+              <%= if @current_admin do %>
+              Logged as: <%= @current_admin.email %>
+              <% end %>
             </div>
           </div>
         </div>
