@@ -84,65 +84,48 @@
             <h3
               class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
             >
-              Show Gladiator
+              Tour "<%= @gladiator.title %>"
             </h3>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
             >
-              <i
-                class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
-              ></i>
-               Burgas, Bulgaria
+               Description: <%= @gladiator.description %>
             </div>
-            <!-- <div class="mb-2 text-gray-700 mt-10">
-              <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
-              >Solution Manager - Creative Tim Officer
-            </div> -->
-
+            <div
+              class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
+            >
+               Starts in: <%= @gladiator.start_date %>
+            </div>
           </div>
           <div class="mt-10 py-10 border-t border-gray-300 text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
-                <!-- <p class="mb-4 text-lg leading-relaxed text-gray-800">
-                  An artist of considerable range, Jenna the name taken by
-
-                </p> -->
-                <!-- <a href="#pablo" class="font-normal text-pink-500"
-                  >Show more</a
-                > -->
 
 
+                  <br>
+                <%= if @current_admin do %>
 
-                <ul>
-
-                  <li>
-                    <strong>Title:</strong>
-                    <%= @gladiator.title %>
-                  </li>
-
-                  <li>
-                    <strong>Description:</strong>
-                    <%= @gladiator.description %>
-                  </li>
-
-                  <li>
-                    <strong>Start date:</strong>
-                    <%= @gladiator.start_date %>
-                  </li>
-
-                  <%= if @current_admin do %>
-                    <%= for player <- @players do %>
-                      <li>
-                        <strong><%= @player.name %></strong>
-
-                      </li>
-
+                  <h1>Players </h1>
+                  <table class="table-auto w-full text-left whitespace-no-wrap">
+                    <thead>
+                      <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Player name</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Plays?</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%= for player <- @players do %>
+                        <tr>
+                          <td class="px-4 py-3"><%= @player.name %></td>
+                          <td class="px-4 py-3">CheckBox</td>
+                          <td class="px-4 py-3 text-lg text-gray-900">Input Integer</td>
+                        </tr>
                       <% end %>
-                  <% end %>
+                    </tbody>
+                  </table>
 
-                </ul>
-
-
+                <% end %>
 
               </div>
             </div>
