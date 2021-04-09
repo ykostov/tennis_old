@@ -4,6 +4,7 @@ defmodule TennisWeb.GladiatorLive do
   alias TennisWeb.GladiatorView
   alias Tennis.Players
   alias Tennis.Accounts
+  alias Tennis.Tours
 
 
   def render(assigns) do
