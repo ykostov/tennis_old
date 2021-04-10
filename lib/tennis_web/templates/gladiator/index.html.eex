@@ -1,34 +1,3 @@
-
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start date</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for gladiator <- @gladiators do %>
-    <tr>
-      <td><%= gladiator.title %></td>
-      <td><%= gladiator.description %></td>
-      <td><%= gladiator.start_date %></td>
-
-      <td>
-        <span><%= link "Show", to: Routes.gladiator_path(@conn, :show, gladiator) %></span>
-        <span><%= link "Edit", to: Routes.gladiator_path(@conn, :edit, gladiator) %></span>
-        <span><%= link "Delete", to: Routes.gladiator_path(@conn, :delete, gladiator), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Gladiator", to: Routes.gladiator_path(@conn, :new) %></span> -->
-
 <main class="profile-page">
   <section class="relative block" style="height: 500px;">
     <div
@@ -123,7 +92,7 @@
               <i
                 class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
               ></i>
-              Stenly Academy, Burgas, Bulgaria
+               Burgas, Bulgaria
             </div>
             <!-- <div class="mb-2 text-gray-700 mt-10">
               <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
@@ -155,7 +124,7 @@
           <%= for gladiator <- @gladiators do %>
           <tr>
             <td class="px-4 py-3">1</td>
-            <td class="px-4 py-3"><%= gladiator.title %></td>
+            <td class="px-4 py-3"><%= link gladiator.title , to: Routes.gladiator_path(@conn, :show, gladiator) %></td>
             <td class="px-4 py-3"><%= gladiator.start_date %></td>
             <td class="px-4 py-3 text-lg text-gray-900">Passed</td>
             <!-- <td class="w-10 text-center">

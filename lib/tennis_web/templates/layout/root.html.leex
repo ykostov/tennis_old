@@ -25,7 +25,7 @@
         <a
           class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
           href="/"
-          >TennisBurgas.com</a
+          >Tennis.com</a
         > <!-- <button
           class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
           type="button"
@@ -105,9 +105,13 @@
       </li>
 
           <li class="flex items-center">
-          <%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
-
+            <%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
           </li>
+          <%= if @current_admin do %>
+          <li class="flex items-center">
+            <%= link "Log out", to: Routes.admin_session_path(@conn, :delete), method: :delete, class: "bg-red-300 text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
+          </li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -145,7 +149,7 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4">
-            <h4 class="text-3xl font-semibold">TennisBurgas.com</h4>
+            <h4 class="text-3xl font-semibold">Tennis.com</h4>
             <h5 class="text-lg mt-0 mb-2 text-gray-700">
               <!-- Find us on any of these platforms, we respond 1-2 business days. -->
             </h5>
@@ -256,14 +260,17 @@
         >
           <div class="w-full md:w-4/12 px-4 mx-auto text-center">
             <div class="text-sm text-gray-600 font-semibold py-1">
-              Всички Права Запазени! © 2021 TennisBurgas.com <br>
+              Всички Права Запазени! © 2021 Tennis.com <br>
               <i class="fas fa-code"></i> от
               <a
                 href="https://bratac.net"
                 target="_blank"
                 class="text-gray-600 hover:text-gray-900"
                 >Bratac.net</a
-              >
+              ><br>
+              <%= if @current_admin do %>
+              Logged as: <%= @current_admin.email %>
+              <% end %>
             </div>
           </div>
         </div>

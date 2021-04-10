@@ -84,69 +84,48 @@
             <h3
               class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
             >
-              New Gladiator
+              Tour "<%= @gladiator.title %>"
             </h3>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
             >
-              <i
-                class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
-              ></i>
-              Burgas, Bulgaria
+               Description: <%= @gladiator.description %>
             </div>
-            <!-- <div class="mb-2 text-gray-700 mt-10">
-              <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
-              >Solution Manager - Creative Tim Officer
-            </div> -->
-
+            <div
+              class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
+            >
+               Starts in: <%= @gladiator.start_date %>
+            </div>
           </div>
           <div class="mt-10 py-10 border-t border-gray-300 text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
-                <!-- <p class="mb-4 text-lg leading-relaxed text-gray-800">
-                  An artist of considerable range, Jenna the name taken by
-
-                </p> -->
-                <!-- <a href="#pablo" class="font-normal text-pink-500"
-                  >Show more</a
-                > -->
 
 
-                <%= form_for @changeset, @action, fn f -> %>
-                   <%= if @changeset.action do %>
-                     <div class="alert alert-danger">
-                       <p>Oops, something went wrong! Please check the errors below.</p>
-                     </div>
-                   <% end %>
-                   <div class="flex flex-wrap -m-2">
-                     <div class="p-2 w-1/2">
-                       <div class="relative">
-                         <%= label f, :title, class: "leading-7 text-sm text-gray-600" %>
-                         <%= text_input f, :title, class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
-                         <%= error_tag f, :title %>
-                       </div>
-                     </div>
-                     <div class="p-2 w-1/2">
-                       <div class="relative">
-                         <%= label f, :description, class: "leading-7 text-sm text-gray-600" %>
-                         <%= text_input f, :description, class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
-                         <%= error_tag f, :description %>
-                       </div>
-                     </div>
-                     <div class="p-2 w-full">
-                       <div class="relative">
-                         <%= label f, :start_date %>
-                         <%= datetime_select f, :start_date %>
-                         <%= error_tag f, :start_date %>
-                       </div>
-                     </div>
-                   </div>
-               <br>
-                   <div>
-                     <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-                   </div>
-                 <% end %>
+                  <br>
+                <%# if @current_admin do %>
 
+                  <h1>Players </h1>
+                  <table class="table-auto w-full text-left whitespace-no-wrap">
+                    <thead>
+                      <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Player name</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Plays?</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Points</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <%= for player <- @players do %>
+                        <tr>
+                          <td class="px-4 py-3"><%= player.name %></td>
+                          <td class="px-4 py-3"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+                          <td class="px-4 py-3 text-lg text-gray-900"> <input type="text" id="fname" name="fname" placeholder="Integer Points"></td>
+                        </tr>                      
+                      <% end %>
+                    </tbody>
+                  </table>
+
+                <%# end %>
 
               </div>
             </div>
