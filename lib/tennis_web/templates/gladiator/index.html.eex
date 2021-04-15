@@ -124,7 +124,7 @@
           <%= for gladiator <- @gladiators do %>
           <tr>
             <td class="px-4 py-3">1</td>
-            <td class="px-4 py-3"><%= link gladiator.title , to: Routes.gladiator_path(@conn, :show, gladiator) %></td>
+            <td class="px-4 py-3"><%= link gladiator.title , to: Routes.live_path(@conn, TennisWeb.GladiatorLive, gladiator) %></td>
             <td class="px-4 py-3"><%= gladiator.start_date %></td>
             <td class="px-4 py-3 text-lg text-gray-900">Passed</td>
             <!-- <td class="w-10 text-center">
