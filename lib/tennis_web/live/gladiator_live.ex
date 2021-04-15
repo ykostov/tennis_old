@@ -12,15 +12,16 @@ defmodule TennisWeb.GladiatorLive do
   end
 
   @impl true
-  def mount(params, %{"admin_token" => admin_token} = _session, socket) do
+  def mount(params, _session, socket) do
     gladiator = Tours.get_gladiator!(params["id"])
     players = Players.list_players()
-    admin = Accounts.get_admin_by_session_token(admin_token)
+    admin = Accounts.get_admin_by_session_token("admin_token")
     socket = assign(
         socket,
         gladiator: gladiator,
         players: players,
         current_admin: admin
+
       )
     {:ok, socket}
   end

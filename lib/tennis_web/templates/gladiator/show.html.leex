@@ -103,7 +103,7 @@
 
 
                   <br>
-                <%# if @current_admin do %>
+                <%= if @current_admin do %>
 
                   <h1>Players </h1>
                   <table class="table-auto w-full text-left whitespace-no-wrap">
@@ -120,12 +120,12 @@
                           <td class="px-4 py-3"><%= player.name %></td>
                           <td class="px-4 py-3"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
                           <td class="px-4 py-3 text-lg text-gray-900"> <input type="text" id="fname" name="fname" placeholder="Integer Points"></td>
-                        </tr>                      
+                        </tr>
                       <% end %>
                     </tbody>
                   </table>
 
-                <%# end %>
+                <% end %>
 
               </div>
             </div>
