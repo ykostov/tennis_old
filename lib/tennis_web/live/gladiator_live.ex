@@ -26,4 +26,11 @@ defmodule TennisWeb.GladiatorLive do
     {:ok, socket}
   end
 
+  def handle_event("toggle_done", %{"id" => id}, socket) do
+    player = Players.get_player!(id)
+    Players.update_player(player, %{done: !player.done})
+    {:noreply, socket}
+  end
+
+
 end
