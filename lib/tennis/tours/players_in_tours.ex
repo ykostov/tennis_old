@@ -3,9 +3,9 @@ defmodule Tennis.Gladiators.PlayersInTours do
   import Ecto.Changeset
 
   schema "players_in_tours" do
-
     field :gladiator_id, :decimal
     field :player_id, :decimal
+    field :points, :decimal
 
     timestamps()
   end
@@ -14,7 +14,7 @@ defmodule Tennis.Gladiators.PlayersInTours do
 
   def changeset(players_in_tours, attrs) do
     player
-    |> cast(attrs, [:name, :nickname, :email])
-    |> validate_required([:name, :nickname, :email])
+    |> cast(params, [:gladiator_id, :player_id, :points])
+    |> validate_required([:gladiator_id, :player_id])
   end
 end
