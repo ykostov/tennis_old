@@ -119,7 +119,7 @@
                       <%= for player <- @players do %>
                         <tr>
                           <td class="px-4 py-3"><%= player.name %></td>
-                          <td class="px-4 py-3"><%= checkbox(:player, :done, phx_click: "toggle_done", phx_value_id: player.id, value: player.done) %> </td>
+                          <td class="px-4 py-3"><input type="checkbox" </input> </td>
                         </tr>
                       <% end %>
                     </tbody>
