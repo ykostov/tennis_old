@@ -8,6 +8,30 @@ defmodule Tennis.Tours do
 
   alias Tennis.Tours.Gladiator
 
+
+  def upsert_players_in_tours(gladiator, player_id) do
+   player =
+     Players
+     |> where([player], player.id == ^player_id)
+     |> Repo.all()
+
+   with {:ok, struct} <-
+     gladiator
+     |> Gladiators.changeset_update_players(gladiator, player)
+     |> Repo.update() do
+     {:ok, Gladiator.get_gladiator(gladiator.id) }
+   else
+     error ->
+       error
+   end
+ end
+
+ def get_tag_status_for(website, tag_id) do
+   status = from(wt in WebsiteTag, where: wt.website_id == ^website.id and wt.tag_id == ^tag_id)
+   |> Repo.one
+   if status, do: :true, else: :false
+ end
+
   @doc """
   Returns the list of gladiators.
 
