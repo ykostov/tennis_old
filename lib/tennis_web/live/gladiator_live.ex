@@ -5,7 +5,7 @@ defmodule TennisWeb.GladiatorLive do
   alias Tennis.Players
   alias Tennis.Accounts
   alias Tennis.Tours
-
+  alias Tennis.Players.Player
 
   def render(assigns) do
    render GladiatorView, "show.html", assigns
@@ -29,6 +29,13 @@ defmodule TennisWeb.GladiatorLive do
   def handle_event("toggle_done", %{"id" => id}, socket) do
     player = Players.get_player!(id)
     Players.update_player(player, %{done: !player.done})
+    {:noreply, socket}
+  end
+
+  def handle_event("toggle_check", %{"id" => id}, socket) do
+    player_id = Players.get_player!(id)
+    gladiators = Tours.get_gladiator!(id)
+    Tours.upsert_gladiator_player(gladiator, player_id)
     {:noreply, socket}
   end
 
