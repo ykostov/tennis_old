@@ -34,7 +34,7 @@ defmodule TennisWeb.GladiatorLive do
 
   def handle_event("toggle_check", %{"id" => id}, socket) do
     player_id = Players.get_player!(id)
-    gladiators = Tours.get_gladiator!(id)
+    gladiator = Tours.get_gladiator!(id)
     Tours.upsert_gladiator_player(gladiator, player_id)
     {:noreply, socket}
   end
