@@ -13,8 +13,8 @@ defmodule Tennis.Gladiators.PlayersInTours do
   @doc false
 
   def changeset(players_in_tours, attrs) do
-    player
-    |> cast(params, [:gladiator_id, :player_id, :points])
+    @player
+    |> cast(attrs, [:gladiator_id, :player_id, :points])
     |> validate_required([:gladiator_id, :player_id])
   end
 end
