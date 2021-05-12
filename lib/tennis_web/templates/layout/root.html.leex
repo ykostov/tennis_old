@@ -104,13 +104,14 @@
         </a>
       </li>
 
-          <li class="flex items-center">
-            <%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
-          </li>
           <%= if @current_admin do %>
           <li class="flex items-center">
             <%= link "Log out", to: Routes.admin_session_path(@conn, :delete), method: :delete, class: "bg-red-300 text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
           </li>
+          <% else %>
+            <li class="flex items-center">
+              <%= link "Log in", to: Routes.admin_session_path(@conn, :new), class: "bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" %></li>
+            </li>
           <% end %>
         </ul>
       </div>
