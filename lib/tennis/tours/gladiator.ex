@@ -1,6 +1,8 @@
 defmodule Tennis.Tours.Gladiator do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Tennis.Players.Player
+  alias Tennis.Tours.Gladiator
 
   schema "gladiators" do
     field :description, :string
@@ -8,6 +10,13 @@ defmodule Tennis.Tours.Gladiator do
     field :title, :string
 
     timestamps()
+
+    many_to_many(
+      :players,
+      Player,
+      join_through: "gladiator_player",
+      on_replace: :delete
+    )
   end
 
   @doc false
