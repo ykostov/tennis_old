@@ -8,6 +8,27 @@ defmodule Tennis.Tours do
 
   alias Tennis.Tours.Gladiator
 
+  def toggle_gladiators_players(%Gladiators{} = gladiator, player_id) do
+  ww = gladiator.id
+  query = from(wt in GladiatorPlayer, where: wt.gladiators_id == ^ww and wt.player_id == ^player_id)
+  assoc = Repo.one(query)
+  # require IEx; IEx.pry
+  if assoc == nil do
+    %GladiatorPlayer{}
+    |> GladiatorPlayer.changeset(%{gladiators_id: gladiator.id, player_id: player_id})
+    |> Repo.insert()
+  else
+    Repo.delete(assoc)
+  end
+
+
+def gladiator_players(%Gladiators{} = gladiator) do
+  gladiator_id = gladiator.id
+  query_join_table = from(wt in GladiatorPlayer, where: wt.gladiators_id == ^gladiator_id)
+  Repo.all(query_join_table)
+end
+
+
   @doc """
   Returns the list of gladiators.
 
@@ -35,7 +56,10 @@ defmodule Tennis.Tours do
       ** (Ecto.NoResultsError)
 
   """
-  def get_gladiator!(id), do: Repo.get!(Gladiator, id)
+  def get_gladiator!(id)
+    Repo.get!(Gladiator, id)
+    |> Repo.preload(:players)
+  end
 
   @doc """
   Creates a gladiator.
