@@ -8,7 +8,7 @@ defmodule Tennis.Tours do
 
   alias Tennis.Tours.Gladiator
 
-  def toggle_gladiators_players(%Gladiators{} = gladiator, player_id) do
+  def toggle_gladiators_players(%Gladiator{} = gladiator, player_id) do
   ww = gladiator.id
   query = from(wt in GladiatorPlayer, where: wt.gladiators_id == ^ww and wt.player_id == ^player_id)
   assoc = Repo.one(query)
@@ -20,6 +20,9 @@ defmodule Tennis.Tours do
   else
     Repo.delete(assoc)
   end
+end
+
+
 
 
 def gladiator_players(%Gladiators{} = gladiator) do
@@ -56,7 +59,7 @@ end
       ** (Ecto.NoResultsError)
 
   """
-  def get_gladiator!(id)
+  def get_gladiator!(id) do
     Repo.get!(Gladiator, id)
     |> Repo.preload(:players)
   end
