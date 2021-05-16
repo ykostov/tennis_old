@@ -1,12 +1,12 @@
 defmodule Tennis.Tours.GladiatorPlayer do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Tennis.Tours.Gladiators
+  alias Tennis.Tours.Gladiator
   alias Tennis.Players.Player
 
   schema "gladiator_player" do
 
-    belongs_to :gladiators, Gladiators
+    belongs_to :gladiator, Gladiator
     belongs_to :player, Player
 
     timestamps()
@@ -16,7 +16,7 @@ defmodule Tennis.Tours.GladiatorPlayer do
 
   def changeset(struct, attrs \\ %{}) do
     struct
-    |> cast(attrs, [:gladiators_id, :player_id])
-    |> validate_required([:gladiators_id, :player_id])
+    |> cast(attrs, [:gladiator_id, :player_id])
+    |> validate_required([:gladiator_id, :player_id])
   end
 end
