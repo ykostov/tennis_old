@@ -11,9 +11,9 @@ defmodule Tennis.Players.Player do
     timestamps()
 
     many_to_many(
-      :gladiator,
+      :gladiators,
       Gladiator,
-      join_through: "gladiator_player",
+      join_through: "player_tour",
       on_replace: :delete
     )
   end

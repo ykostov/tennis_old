@@ -7,7 +7,7 @@ defmodule Tennis.GladiatorPlayer do
 
   alias Tennis.Tours.Gladiator
   alias Tennis.Players.Player
-  alias Tennis.Tours.GladiatorPlayer
+  alias Tennis.Tours.PlayerTour
   @doc """
   Returns the list of websites tags.
   """

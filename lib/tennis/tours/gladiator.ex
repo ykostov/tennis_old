@@ -14,7 +14,7 @@ defmodule Tennis.Tours.Gladiator do
     many_to_many(
       :players,
       Player,
-      join_through: "gladiator_player",
+      join_through: "player_tour",
       on_replace: :delete
     )
   end

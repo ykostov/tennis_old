@@ -9,6 +9,20 @@ defmodule Tennis.Tours do
   alias Tennis.Tours.Gladiator
 
 
+def toggle_gladiators_players(%Gladiator{} = gladiator, player_id) do
+   ww = gladiator.id
+   query = from(wt in PlayerTour, where: wt.gladiator_id == ^ww and wt.player_id == ^player_id)
+   assoc = Repo.one(query)
+   # require IEx; IEx.pry
+   if assoc == nil do
+     %PlayerTour{}
+     |> PlayerTour.changeset(%{gladiator_id: gladiator.id, player_id: player_id})
+     |> Repo.insert()
+   else
+     Repo.delete(assoc)
+   end
+ end
+
 
 def player_tour(%Tours{} = tour) do
   tour_id = tour.id
