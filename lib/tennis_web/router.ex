@@ -77,9 +77,9 @@ defmodule TennisWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
-    resources "/gladiators", GladiatorController, except: [:show]
+    resources "/tours", TourController, except: [:show]
     resources "/players", PlayerController
-    live "/gladiators/:id", GladiatorLive
+    live "/tours/:id", TourLive
 
 
 

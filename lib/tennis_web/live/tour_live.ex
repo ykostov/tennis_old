@@ -1,30 +1,30 @@
-defmodule TennisWeb.GladiatorLive do
+defmodule TennisWeb.TourLive do
   use TennisWeb, :live_view
 
-  alias TennisWeb.GladiatorView
+  alias TennisWeb.TourView
   alias Tennis.Players
   alias Tennis.Accounts
   alias Tennis.Tours
   alias Tennis.Repo
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours.Tour
 
 
   def render(assigns) do
-   render GladiatorView, "show.html", assigns
+   render TourView, "show.html", assigns
   end
 
   @impl true
     def mount(params, %{"admin_token" => admin_token} = session, socket) do
-    gladiator = Tours.get_gladiator!(params["id"])
+    tour = Tours.get_tour!(params["id"])
     players = Players.list_players()
-    gladiator_players = Tours.player_tour(tour)
+    tour_players = Tours.player_tour(tour)
                   |>Enum.map(fn(x) -> x.player_id end)
     admin = Accounts.get_admin_by_session_token(admin_token)
     socket = assign(
         socket,
-        gladiator: gladiator,
+        tour: tour,
         players: players,
-        gladiator_players: gladiator_players,
+        tour_players: tour_players,
         current_admin: admin
 
       )
@@ -32,9 +32,9 @@ defmodule TennisWeb.GladiatorLive do
   end
 
   def handle_event("toggle_check", %{"player-id" => player_id}, socket) do
-    gladiator = socket.assigns[:gladiator]
+    tour = socket.assigns[:tour]
               |> Repo.preload(:players)
-    Tours.toggle_gladiators_players(gladiator, player_id)
+    Tours.toggle_tours_players(tour, player_id)
     {:noreply, socket}
   end
 

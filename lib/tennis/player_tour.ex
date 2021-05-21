@@ -1,11 +1,11 @@
-defmodule Tennis.GladiatorPlayer do
+defmodule Tennis.TourPlayer do
   @moduledoc """
   The WebsiteTag context.
   """
   import Ecto.Query, warn: false
   alias Tennis.Repo
 
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours.Tour
   alias Tennis.Players.Player
   alias Tennis.Tours.PlayerTour
   @doc """

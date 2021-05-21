@@ -53,7 +53,7 @@
             >
               <div class="py-6 px-3 mt-32 sm:mt-0">
 
-                  <%= link "New Gladiator", to: Routes.gladiator_path(@conn, :new), class: "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" %>
+                  <%= link "New Tour", to: Routes.tour_path(@conn, :new), class: "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" %>
 
               </div>
             </div>
@@ -84,7 +84,7 @@
             <h3
               class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
             >
-              Gladiators League
+              tours League
             </h3>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
@@ -121,11 +121,11 @@
           </tr>
         </thead>
         <tbody>
-          <%= for gladiator <- @gladiators do %>
+          <%= for tour <- @tours do %>
           <tr>
             <td class="px-4 py-3">1</td>
-            <td class="px-4 py-3"><%= link gladiator.title , to: Routes.live_path(@conn, TennisWeb.GladiatorLive, gladiator) %></td>
-            <td class="px-4 py-3"><%= gladiator.start_date %></td>
+            <td class="px-4 py-3"><%= link tour.title , to: Routes.live_path(@conn, TennisWeb.TourLive, tour) %></td>
+            <td class="px-4 py-3"><%= tour.start_date %></td>
             <td class="px-4 py-3 text-lg text-gray-900">Passed</td>
             <!-- <td class="w-10 text-center">
               <input name="plan" type="radio">

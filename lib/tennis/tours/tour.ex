@@ -1,13 +1,14 @@
-defmodule Tennis.Tours.Gladiator do
+defmodule Tennis.Tours.Tour do
   use Ecto.Schema
   import Ecto.Changeset
   alias Tennis.Players.Player
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours.Tour
 
-  schema "gladiators" do
+  schema "tours" do
+    field :title, :string
     field :description, :string
     field :start_date, :naive_datetime
-    field :title, :string
+
 
     timestamps()
 
@@ -20,8 +21,8 @@ defmodule Tennis.Tours.Gladiator do
   end
 
   @doc false
-  def changeset(gladiator, attrs) do
-    gladiator
+  def changeset(tour, attrs) do
+    tour
     |> cast(attrs, [:title, :description, :start_date])
     |> validate_required([:title, :description, :start_date])
   end

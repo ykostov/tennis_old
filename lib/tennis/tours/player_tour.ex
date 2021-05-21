@@ -3,11 +3,11 @@ defmodule Tennis.Tours.PlayerTour do
   import Ecto.Changeset
   alias Tennis.Tours
   alias Tennis.Players.Player
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours.Tour
 
   schema "player_tour" do
 
-    belongs_to :tours, Gladiator
+    belongs_to :tours, Tour
     belongs_to :players, Player
 
     timestamps()
@@ -17,7 +17,7 @@ defmodule Tennis.Tours.PlayerTour do
 
   def changeset(struct, attrs \\ %{}) do
     struct
-    |> cast(attrs, [:gladiator_id, :player_id])
-    |> validate_required([:gladiator_id, :player_id])
+    |> cast(attrs, [:tour_id, :player_id])
+    |> validate_required([:tour_id, :player_id])
   end
 end

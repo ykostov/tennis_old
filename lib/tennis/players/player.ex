@@ -1,7 +1,7 @@
 defmodule Tennis.Players.Player do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours.Tour
 
   schema "players" do
     field :email, :string
@@ -11,8 +11,8 @@ defmodule Tennis.Players.Player do
     timestamps()
 
     many_to_many(
-      :gladiators,
-      Gladiator,
+      :tours,
+      Tour,
       join_through: "player_tour",
       on_replace: :delete
     )
