@@ -1,13 +1,13 @@
-defmodule Tennis.Tours.GladiatorPlayer do
+defmodule Tennis.Tours.PlayerTour do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Tennis.Tours.Gladiator
+  alias Tennis.Tours
   alias Tennis.Players.Player
 
-  schema "gladiator_player" do
+  schema "player_tour" do
 
-    belongs_to :gladiator, Gladiator
-    belongs_to :player, Player
+    belongs_to :tours, Tour
+    belongs_to :players, Player
 
     timestamps()
   end
