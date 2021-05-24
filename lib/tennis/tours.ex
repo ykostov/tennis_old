@@ -41,7 +41,7 @@ end
       [%tour{}, ...]
 
   """
-  def list_tour do
+  def list_tours do
     Repo.all(Tour)
   end
 
