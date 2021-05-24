@@ -17,8 +17,8 @@ defmodule TennisWeb.TourLive do
   def mount(params, %{"admin_token" => admin_token} = session, socket) do
     tour = Tours.get_tour!(params["id"])
     players = Players.list_players()
-    tour_players = Tours.player_tour(tour)
-                  |>Enum.map(fn(x) -> x.player_id end)
+    tour_players = tour.players
+
     admin = Accounts.get_admin_by_session_token(admin_token)
     socket = assign(
         socket,
@@ -34,8 +34,9 @@ defmodule TennisWeb.TourLive do
   def handle_event("toggle_check", %{"player-id" => player_id}, socket) do
     tour = socket.assigns[:tour]
               |> Repo.preload(:players)
-    Tours.toggle_tours_players(tour, player_id)
-    {:noreply, socket}
+    Tours.toggle_player_tour(tour, player_id)
+    tour_players = tour.player
+                   |>Enum.map(fn(x) -> x.player_id end)
+                   {:noreply, assign(socket, :tour_players, tour_players)}
   end
-
 end
