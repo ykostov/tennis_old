@@ -79,7 +79,7 @@ defmodule TennisWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :confirm
     resources "/tours", TourController, except: [:show]
     resources "/players", PlayerController
-    live "/tours/:id", TourLive
+
 
 
 
@@ -106,6 +106,7 @@ defmodule TennisWeb.Router do
     get "/admins/settings", AdminSettingsController, :edit
     put "/admins/settings", AdminSettingsController, :update
     get "/admins/settings/confirm_email/:token", AdminSettingsController, :confirm_email
+    live "/tours/:id", TourLive
   end
 
   scope "/", TennisWeb do

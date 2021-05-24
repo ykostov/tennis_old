@@ -14,7 +14,7 @@ defmodule TennisWeb.TourLive do
   end
 
   @impl true
-    def mount(params, %{"admin_token" => admin_token} = session, socket) do
+  def mount(params, %{"admin_token" => admin_token} = session, socket) do
     tour = Tours.get_tour!(params["id"])
     players = Players.list_players()
     tour_players = Tours.player_tour(tour)
