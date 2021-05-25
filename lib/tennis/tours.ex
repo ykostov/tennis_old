@@ -11,8 +11,8 @@ defmodule Tennis.Tours do
 
 
 def toggle_player_tour(%Tour{} = tour, player_id) do
-   ww = tour.id
-   query = from(wt in PlayerTour, where: wt.tour_id == ^ww and wt.player_id == ^player_id)
+   tt = tour.id
+   query = from(tp in PlayerTour, where: tp.tour_id == ^tt and tp.player_id == ^player_id)
    assoc = Repo.one(query)
    # require IEx; IEx.pry
    if assoc == nil do
