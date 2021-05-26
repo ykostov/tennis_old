@@ -18,6 +18,7 @@ defmodule TennisWeb.TourLive do
     tour = Tours.get_tour!(params["id"])
     players = Players.list_players()
     tour_players = tour.players
+                   |>Enum.map(fn(x) -> x.id end)
 
     admin = Accounts.get_admin_by_session_token(admin_token)
     socket = assign(
@@ -37,7 +38,7 @@ defmodule TennisWeb.TourLive do
     Tours.toggle_player_tour(tour, player_id)
     tour_players = tour.players
                    |>Enum.map(fn(x) -> x.id end)
-                   {:noreply, assign(socket, :tour_players, tour_players)}
+                   {:noreply, assign(socket, :tour.players, tour_players)}
   end
 
 
