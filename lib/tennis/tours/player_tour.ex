@@ -7,8 +7,8 @@ defmodule Tennis.Tours.PlayerTour do
 
   schema "player_tour" do
 
-    belongs_to :tours, Tour
-    belongs_to :players, Player
+    belongs_to :tour, Tour
+    belongs_to :player, Player
 
     timestamps()
   end

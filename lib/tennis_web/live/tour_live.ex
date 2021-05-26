@@ -35,8 +35,11 @@ defmodule TennisWeb.TourLive do
     tour = socket.assigns[:tour]
               |> Repo.preload(:players)
     Tours.toggle_player_tour(tour, player_id)
-    tour_players = tour.player
-                   |>Enum.map(fn(x) -> x.player_id end)
+    tour_players = tour.players
+                   |>Enum.map(fn(x) -> x.id end)
                    {:noreply, assign(socket, :tour_players, tour_players)}
   end
+
+
+
 end
