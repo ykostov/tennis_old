@@ -2,7 +2,7 @@ defmodule Tennis.Tours.Tour do
   use Ecto.Schema
   import Ecto.Changeset
   alias Tennis.Players.Player
-  alias Tennis.Tours.Tour
+
 
   schema "tours" do
     field :title, :string

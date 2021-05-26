@@ -5,8 +5,8 @@ defmodule TennisWeb.TourController do
   alias Tennis.Tours.Tour
 
   def index(conn, _params) do
-    tour = Tours.list_tours()
-    render(conn, "index.html", tours: tour)
+    tours = Tours.list_tours()
+    render(conn, "index.html", tours: tours)
   end
 
   def new(conn, _params) do

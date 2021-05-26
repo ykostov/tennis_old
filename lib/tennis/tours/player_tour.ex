@@ -1,7 +1,6 @@
 defmodule Tennis.Tours.PlayerTour do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Tennis.Tours
   alias Tennis.Players.Player
   alias Tennis.Tours.Tour
 

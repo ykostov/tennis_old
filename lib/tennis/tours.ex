@@ -25,11 +25,6 @@ def toggle_player_tour(%Tour{} = tour, player_id) do
  end
 
 
-def player_tour(%Tour{} = tour) do
-  tour_id = tour.id
-  query_join_table = from(wt in PlayerTour, where: wt.tour_id == ^tour_id)
-  Repo.all(query_join_table)
-end
 
 
   @doc """
