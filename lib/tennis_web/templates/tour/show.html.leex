@@ -84,17 +84,17 @@
             <h3
               class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
             >
-              Tour "<%= @gladiator.title %>"
+              Tour "<%= @tour.title %>"
             </h3>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
             >
-               Description: <%= @gladiator.description %>
+               Description: <%= @tour.description %>
             </div>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
             >
-               Starts in: <%= @gladiator.start_date %>
+               Starts in: <%= @tour.start_date %>
             </div>
           </div>
           <div class="mt-10 py-10 border-t border-gray-300 text-center">
@@ -105,7 +105,8 @@
                   <br>
                 <%= if @current_admin do %>
 
-                  <h1>Players </h1>
+                  <h1> Checked players: <%= length(@tour_players) %> </h1>
+
                   <table class="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
                       <tr>
@@ -118,7 +119,9 @@
                       <%= for player <- @players do %>
                         <tr>
                           <td class="px-4 py-3"><%= player.name %></td>
-                          <td class="px-4 py-3"><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></td>
+                          <td class="px-4 py-3">
+                            <%= checkbox(:player, :check, phx_click: "toggle_check", phx_value_player_id: player.id, value: Enum.member?(@tour_players, player.id)) %>
+                          </td>
                           <td class="px-4 py-3 text-lg text-gray-900"> <input type="text" id="fname" name="fname" placeholder="Integer Points"></td>
                         </tr>
                       <% end %>

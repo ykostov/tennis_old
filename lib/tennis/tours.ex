@@ -5,100 +5,122 @@ defmodule Tennis.Tours do
 
   import Ecto.Query, warn: false
   alias Tennis.Repo
+  alias Tennis.Tours.Tour
+  alias Tennis.Tours.PlayerTour
 
-  alias Tennis.Tours.Gladiator
+
+
+def toggle_player_tour(%Tour{} = tour, player_id) do
+   tt = tour.id
+   query = from(tp in PlayerTour, where: tp.tour_id == ^tt and tp.player_id == ^player_id)
+   assoc = Repo.one(query)
+   # require IEx; IEx.pry
+   if assoc == nil do
+     %PlayerTour{}
+     |> PlayerTour.changeset(%{tour_id: tour.id, player_id: player_id})
+     |> Repo.insert()
+   else
+     Repo.delete(assoc)
+   end
+ end
+
+
+
 
   @doc """
-  Returns the list of gladiators.
+  Returns the list of tours.
 
   ## Examples
 
-      iex> list_gladiators()
-      [%Gladiator{}, ...]
+      iex> list_tours()
+      [%tour{}, ...]
 
   """
-  def list_gladiators do
-    Repo.all(Gladiator)
+  def list_tours do
+    Repo.all(Tour)
   end
 
   @doc """
-  Gets a single gladiator.
+  Gets a single tour.
 
-  Raises `Ecto.NoResultsError` if the Gladiator does not exist.
+  Raises `Ecto.NoResultsError` if the tour does not exist.
 
   ## Examples
 
-      iex> get_gladiator!(123)
-      %Gladiator{}
+      iex> get_tour!(123)
+      %tour{}
 
-      iex> get_gladiator!(456)
+      iex> get_tour!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_gladiator!(id), do: Repo.get!(Gladiator, id)
+  def get_tour!(id) do
+    Repo.get!(Tour, id)
+    |> Repo.preload(:players)
+  end
 
   @doc """
-  Creates a gladiator.
+  Creates a tour.
 
   ## Examples
 
-      iex> create_gladiator(%{field: value})
-      {:ok, %Gladiator{}}
+      iex> create_tour(%{field: value})
+      {:ok, %tour{}}
 
-      iex> create_gladiator(%{field: bad_value})
+      iex> create_tour(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_gladiator(attrs \\ %{}) do
-    %Gladiator{}
-    |> Gladiator.changeset(attrs)
+  def create_tour(attrs \\ %{}) do
+    %Tour{}
+    |> Tour.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a gladiator.
+  Updates a tour.
 
   ## Examples
 
-      iex> update_gladiator(gladiator, %{field: new_value})
-      {:ok, %Gladiator{}}
+      iex> update_tour(tour, %{field: new_value})
+      {:ok, %tour{}}
 
-      iex> update_gladiator(gladiator, %{field: bad_value})
+      iex> update_tour(tour, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_gladiator(%Gladiator{} = gladiator, attrs) do
-    gladiator
-    |> Gladiator.changeset(attrs)
+  def update_tour(%Tour{} = tour, attrs) do
+    tour
+    |> Tour.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a gladiator.
+  Deletes a tour.
 
   ## Examples
 
-      iex> delete_gladiator(gladiator)
-      {:ok, %Gladiator{}}
+      iex> delete_tour(tour)
+      {:ok, %tour{}}
 
-      iex> delete_gladiator(gladiator)
+      iex> delete_tour(tour)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_gladiator(%Gladiator{} = gladiator) do
-    Repo.delete(gladiator)
+  def delete_tour(%Tour{} = tour) do
+    Repo.delete(tour)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking gladiator changes.
+  Returns an `%Ecto.Changeset{}` for tracking tour changes.
 
   ## Examples
 
-      iex> change_gladiator(gladiator)
-      %Ecto.Changeset{data: %Gladiator{}}
+      iex> change_tour(tour)
+      %Ecto.Changeset{data: %tour{}}
 
   """
-  def change_gladiator(%Gladiator{} = gladiator, attrs \\ %{}) do
-    Gladiator.changeset(gladiator, attrs)
+  def change_tour(%Tour{} = tour, attrs \\ %{}) do
+    Tour.changeset(tour, attrs)
   end
 end

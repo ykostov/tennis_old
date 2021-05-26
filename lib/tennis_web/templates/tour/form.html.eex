@@ -53,7 +53,7 @@
             >
               <div class="py-6 px-3 mt-32 sm:mt-0">
 
-                  <%= link "New Gladiator", to: Routes.gladiator_path(@conn, :new), class: "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" %>
+
 
               </div>
             </div>
@@ -84,7 +84,7 @@
             <h3
               class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
             >
-              Gladiators League
+              New Tour
             </h3>
             <div
               class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
@@ -92,7 +92,7 @@
               <i
                 class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
               ></i>
-               Burgas, Bulgaria
+              Burgas, Bulgaria
             </div>
             <!-- <div class="mb-2 text-gray-700 mt-10">
               <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
@@ -110,30 +110,42 @@
                 <!-- <a href="#pablo" class="font-normal text-pink-500"
                   >Show more</a
                 > -->
-                <table class="table-auto w-full text-left whitespace-no-wrap">
-        <thead>
-          <tr>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">#</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Title</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Start Date</th>
-            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Status</th>
-            <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= for gladiator <- @gladiators do %>
-          <tr>
-            <td class="px-4 py-3">1</td>
-            <td class="px-4 py-3"><%= link gladiator.title , to: Routes.live_path(@conn, TennisWeb.GladiatorLive, gladiator) %></td>
-            <td class="px-4 py-3"><%= gladiator.start_date %></td>
-            <td class="px-4 py-3 text-lg text-gray-900">Passed</td>
-            <!-- <td class="w-10 text-center">
-              <input name="plan" type="radio">
-            </td> -->
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+
+
+                <%= form_for @changeset, @action, fn f -> %>
+                   <%= if @changeset.action do %>
+                     <div class="alert alert-danger">
+                       <p>Oops, something went wrong! Please check the errors below.</p>
+                     </div>
+                   <% end %>
+                   <div class="flex flex-wrap -m-2">
+                     <div class="p-2 w-1/2">
+                       <div class="relative">
+                         <%= label f, :title, class: "leading-7 text-sm text-gray-600" %>
+                         <%= text_input f, :title, class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+                         <%= error_tag f, :title %>
+                       </div>
+                     </div>
+                     <div class="p-2 w-1/2">
+                       <div class="relative">
+                         <%= label f, :description, class: "leading-7 text-sm text-gray-600" %>
+                         <%= text_input f, :description, class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+                         <%= error_tag f, :description %>
+                       </div>
+                     </div>
+                     <div class="p-2 w-full">
+                       <div class="relative">
+                         <%= label f, :start_date %>
+                         <%= datetime_select f, :start_date %>
+                         <%= error_tag f, :start_date %>
+                       </div>
+                     </div>
+                   </div>
+               <br>
+                   <div>
+                     <%= submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                   </div>
+                 <% end %>
 
 
               </div>

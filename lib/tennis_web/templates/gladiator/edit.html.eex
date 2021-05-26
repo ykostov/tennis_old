@@ -1,5 +1,0 @@
-<h1>Edit Gladiator</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.gladiator_path(@conn, :update, @gladiator)) %>
-
-<span><%= link "Back", to: Routes.gladiator_path(@conn, :index) %></span>
