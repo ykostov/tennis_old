@@ -122,7 +122,9 @@
                           <td class="px-4 py-3">
                             <%= checkbox(:player, :check, phx_click: "toggle_check", phx_value_player_id: player.id, value: Enum.member?(@tour_players, player.id)) %>
                           </td>
-                          <td class="px-4 py-3 text-lg text-gray-900"> <input type="text" id="fname" name="fname" placeholder="Integer Points"></td>
+                          <td class="px-4 py-3">
+                            <%= number_input :playertour, :points, phx_change: "int_points" %>
+                          </td>
                         </tr>
                       <% end %>
                     </tbody>

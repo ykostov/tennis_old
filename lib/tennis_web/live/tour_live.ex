@@ -19,7 +19,6 @@ defmodule TennisWeb.TourLive do
     players = Players.list_players()
     tour_players = tour.players
                    |>Enum.map(fn(x) -> x.id end)
-
     admin = Accounts.get_admin_by_session_token(admin_token)
     socket = assign(
         socket,
@@ -41,6 +40,13 @@ defmodule TennisWeb.TourLive do
                    {:noreply, assign(socket, :tour_players, tour_players)}
   end
 
+  def hande_event("int_points", %{"player-id" => player_id}, points, socket) do
+    tour_id = socket.assign[:tour]
+              |> Enum.map(fn(x) -> x.id end)
+    Tours.points_for_player_in_tour(player_id, tour_id, points)
+
+    {:noreply, socket}
+  end
 
 
 end

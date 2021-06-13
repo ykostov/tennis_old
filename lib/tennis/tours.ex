@@ -7,6 +7,7 @@ defmodule Tennis.Tours do
   alias Tennis.Repo
   alias Tennis.Tours.Tour
   alias Tennis.Tours.PlayerTour
+  alias Tennis.Players
 
 
 
@@ -26,6 +27,11 @@ def toggle_player_tour(%Tour{} = tour, player_id) do
 
 
 
+ def points_for_player_in_tour(player_id, tour_id, points) do
+   player = Players.get_player!(player_id)
+   tour = Tours.get_tour!(tour_id)
+   PlayerTour.update_playertour(player, tour, points)
+ end
 
   @doc """
   Returns the list of tours.
